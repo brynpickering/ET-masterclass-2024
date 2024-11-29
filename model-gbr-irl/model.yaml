@@ -310,15 +310,10 @@ templates:
     base_tech: transmission
     carrier_in: electricity
     carrier_out: electricity
-    flow_out_eff: 0.99999995 # (1/m)
+    flow_out_eff: 0.99995 # (1/km)
     lifetime: 60
-    # costs from [@JRC:2014], Table 39
-    cost_flow_cap_per_distance:
-      data: 9e-04 # (1e+06 EUR2013/MW/km)
-      index: monetary
-      dims: costs
-    cost_om_annual_investment_fraction:
-      data: 0.015
+    cost_flow_cap:
+      data: 0.94 # (1e+06 EUR2013/MW/km)
       index: monetary
       dims: costs
 
