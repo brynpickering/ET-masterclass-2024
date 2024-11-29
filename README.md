@@ -56,11 +56,35 @@ Finally, you can create the isolated Python working environment for this masterc
 
 ## Run
 
-Although you can run the model from the command line, the best way to get to grips with the model is using the [Jupyter notebooks](https://jupyter.readthedocs.io/en/latest/running.html) found in this repository.
+We recommend you run the models from the terminal.
 They will be available on your device after following the [preparation steps](#prepare), and visible in the VSCode `Explorer` when you have the `<output-directory>\ET-masterclass-2024` folder open in VSCode.
-You can follow those and, when you want to go further, you can read more in the [Calliope documentation](https://calliope.readthedocs.io/en/latest).
+To run a model and save the outputs in the NetCDF format (a storage convention for multi-dimensional data):
 
-## Customise
+```sh
+calliope run "model-gbr-irl/model.yaml" --save_netcdf "model-gbr-irl.nc"
+```
+
+### Run a scenario
+
+There is one pre-defined "scenario" in the GBR+IRL model, to add in nuclear as a technology.
+To introduce this, you can add it to your command line arguments
+
+```sh
+calliope run "model-gbr-irl/model.yaml" --save_netcdf "model-gbr-irl-with-nuclear.nc" --scenario add_nuclear
+```
+
+## Visualise
+
+Once you have results, you can use [calligraph](https://github.com/calliope-project/calligraph), a tool for visualising Calliope model results that we are currently developing (i.e., expect some rough edges).
+Once you have run a model, you can call calligraph with the name of the NetCDF file:
+
+```sh
+calligraph "model-gbr-irl.nc"
+```
+
+This will open a tab in your browser with a data dashboard.
+
+## Go further
 
 This pre-built model is a very simple example.
 You can extend / amend it directly by modifying the YAML files.
