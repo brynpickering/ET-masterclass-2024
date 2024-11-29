@@ -51,7 +51,7 @@ Finally, you can create the isolated Python working environment for this masterc
 1. Run the following two commands to create your working environment and then to _activate_ it:
     ```bash
     conda env create -f environment.yaml
-    conda activate euro-calliope-et-masterclass
+    conda activate et-masterclass
     ```
 
 ## Run
