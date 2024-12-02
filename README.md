@@ -38,6 +38,7 @@ This gives you access to a high-performance optimisation solver.
 > [!TIP]
 > You can ignore steps 2 and 3 of the instructions (downloading the installer) and go straight to requesting a license after registering.
 > See our [Gurobi license section](#set-the-gurobi-license) for details on installing the license.
+
 > [!NOTE]
 > You can only request the license while connected to the university network (i.e., connected to eduroam and not behind a personal VPN).
 
