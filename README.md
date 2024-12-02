@@ -26,20 +26,20 @@ First, you will need to install software on your device:
 1. [VSCode](https://code.visualstudio.com/download).
 This gives you access to an Interactive Development Environment (IDE) in which to edit code and to interact with your device's terminal.
 On Windows, I recommend you follow the _command prompt_ instructions.
-1. [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file#download).
+2. [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file#download).
 This gives you access to `conda` in your device's terminal, with which you can create isolated Python environments to work in.
 There are other variants of access to `conda` (Anaconda, Miniconda, Mambaforge, etc.).
 I recommend `Miniforge` as it defaults to the open-source `conda-forge` [channel](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-channels.html), instead of the commercial `defaults` channel.
-    > [!NOTE]
-    > On Windows, you should download `Miniforge3-Windows-x86_64` from the releases.
-    > You may find that on Chrome it says the download is "dangerous" - you can safely bypass this and force the download.
-1. [The Gurobi solver license](https://www.gurobi.com/features/academic-named-user-license/).
+> [!NOTE]
+> On Windows, you should download `Miniforge3-Windows-x86_64` from the releases.
+> You may find that on Chrome it says the download is "dangerous" - you can safely bypass this and force the download.
+3. [The Gurobi solver license](https://www.gurobi.com/features/academic-named-user-license/).
 This gives you access to a high-performance optimisation solver.
-    > [!TIP]
-    > You can ignore steps 2 and 3 of the instructions (downloading the installer) and go straight to requesting a license after registering.
-    > See our [Gurobi license section](#set-the-gurobi-license) for details on installing the license.
-    > [!NOTE]
-    > You can only request the license while connected to the university network (i.e., connected to eduroam and not behind a personal VPN).
+> [!TIP]
+> You can ignore steps 2 and 3 of the instructions (downloading the installer) and go straight to requesting a license after registering.
+> See our [Gurobi license section](#set-the-gurobi-license) for details on installing the license.
+> [!NOTE]
+> You can only request the license while connected to the university network (i.e., connected to eduroam and not behind a personal VPN).
 
 ### Set up VSCode
 
