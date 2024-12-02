@@ -40,7 +40,7 @@ This gives you access to a high-performance optimisation solver.
 > See our [Gurobi license section](#set-the-gurobi-license) for details on installing the license.
 
 > [!NOTE]
-> You can only request the license while connected to the university network (i.e., connected to eduroam and not behind a personal VPN).
+> You can only request and set up the license while connected to the university network (i.e., connected to eduroam and not behind a personal VPN).
 
 ### Set up VSCode
 
