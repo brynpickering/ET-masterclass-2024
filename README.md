@@ -23,27 +23,51 @@ Using [Calliope](https://www.callio.pe), the model is solved as a linear optimis
 
 First, you will need to install software on your device:
 
-1. [The Gurobi solver license](https://www.gurobi.com/downloads/end-user-license-agreement-academic/).
-This gives you access to a high-performance optimisation solver.
 1. [VSCode](https://code.visualstudio.com/download).
 This gives you access to an Interactive Development Environment (IDE) in which to edit code and to interact with your device's terminal.
-1. [Miniconda](https://docs.anaconda.com/miniconda/install/).
+On Windows, I recommend you follow the _command prompt_ instructions.
+1. [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file#download).
 This gives you access to `conda` in your device's terminal, with which you can create isolated Python environments to work in.
+There are other variants of access to `conda` (Anaconda, Miniconda, Mambaforge, etc.).
+I recommend `Miniforge` as it defaults to the open-source `conda-forge` [channel](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-channels.html), instead of the commercial `defaults` channel.
+> [!NOTE]
+> On Windows, you should download `Miniforge3-Windows-x86_64` from the releases.
+> You may find that on Chrome it says the download is "dangerous" - you can safely bypass this and force the download.
+1. [The Gurobi solver license](https://www.gurobi.com/features/academic-named-user-license/).
+This gives you access to a high-performance optimisation solver.
+> [!TIP]
+> You can ignore steps 2 and 3 of the instructions (downloading the installer) and go straight to requesting a license after registering.
+> See our [Gurobi license section](#set-the-gurobi-license) for details on installing the license.
+> [!NOTE]
+> You can only request the license while connected to the university network (i.e., connected to eduroam and not behind a personal VPN).
+
+### Set up VSCode
 
 With this software installed, you can then set up VSCode to allow access to `conda` and `git` from the "terminal":
 
-1. Open VSCode.
-1. Open the `command palette` (Control-Shift-P, shows a bar at the top of the screen).
-1. Search for `Terminal: Select Default Profile`.
-1. Select `Command Prompt`.
+1. **Set the correct terminal**
+    1. Open VSCode.
+    1. Open the `command palette` (Control-Shift-P, shows a bar at the top of the screen).
+    1. Search for `Terminal: Select Default Profile`.
+    1. Select `Command Prompt`.
+1. **Install the Python Extension**.
+Click on the "Extensions" tab on the left-hand side of VSCode (four squares) and search for the official Microsoft Python extension.
+1. **Set your Python environment**
+    1. Open the `command palette` (Control-Shift-P, shows a bar at the top of the screen).
+    1. Search for `Python: Select Interpreter`
+    1. Select `base` (it should have `miniforge3` in the file path)
 1. Open a new terminal window (`Terminal` top-bar tab -> `New Terminal`, it will open at the bottom of the screen).
 1. Run `conda install git` in the terminal.
 
+### Clone the GitHub repository
+
 With VSCode set up, you can "clone" (i.e. copy) this repository to your device:
 
-1. In the VSCode terminal, call `git clone git@github.com:brynpickering/ET-masterclass-2024.git <output-directory>`.
+1. In the VSCode terminal, call `git clone https://github.com/brynpickering/ET-masterclass-2024.git <output-directory>\ET-masterclass-2024`.
 `<output-directory>` should be a directory on your device where you want to store cloned GitHub repositories (often something like `%USERPROFILE%\Repositories` on Windows or `~/Repositories` on Linux/MacOS).
 1. Then you can open that cloned repository (i.e. downloaded folder) in VSCode (`File` top-bar tab -> `Open Folder` -> navigate to `<output-directory>\ET-masterclass-2024`).
+
+### Create the masterclass conda environment
 
 Finally, you can create the isolated Python working environment for this masterclass:
 
@@ -53,6 +77,16 @@ Finally, you can create the isolated Python working environment for this masterc
     conda env create -f environment.yaml
     conda activate et-masterclass
     ```
+
+### Set the Gurobi license
+
+With the `et-masterclass` conda environment activated, you can then call the `grbgetkey` command in the terminal to install the Gurobi license that you have requested, e.g.:
+
+```bash
+grbgetkey ae36ac20-16e6-acd2-f242-4da6e765fa0a
+```
+
+The license key can be found on the Gurobi portal, under the "Licenses" tab and then the "show installation instructions" button.
 
 ## Run
 
