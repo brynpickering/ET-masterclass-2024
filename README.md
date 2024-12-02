@@ -36,7 +36,7 @@ I recommend `Miniforge` as it defaults to the open-source `conda-forge` [channel
 3. [The Gurobi solver license](https://www.gurobi.com/features/academic-named-user-license/).
 This gives you access to a high-performance optimisation solver.
 > [!TIP]
-> You can ignore steps 2 and 3 of the instructions (downloading the installer) and go straight to requesting a license after registering.
+> You can ignore steps 2 and 3 of the instructions (downloading the installer) and go straight to requesting a "named user" license after registering.
 > See our [Gurobi license section](#set-the-gurobi-license) for details on installing the license.
 
 > [!NOTE]
