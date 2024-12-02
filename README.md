@@ -1,6 +1,6 @@
 # ET-Masterclass-2024
 
-Energy Technologies MPhil ETB1 masterclass in Energy Systems Modelling.
+Energy Technologies MPhil ETA1 masterclass in Energy Systems Modelling.
 
 This repository contains a subset of the [Euro-Calliope pre-built model](https://euro-calliope.readthedocs.io), containing two countries in the European energy system.
 It is built for use in [_Calliope_ v0.7](https://calliope.readthedocs.io/en/latest/).
