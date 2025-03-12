@@ -1,66 +1,29 @@
 import: [scenarios.yaml]
+
 config:
   init:
-    name: 'Example model'
+    name: "Example model"
     calliope_version: "0.7"
-    time_subset: ['2015', '2015']
+    time_subset: ["2015", "2015"]
     time_resample: "4h"
   build:
     mode: plan
-    backend: gurobi
+  solve:
+    solver: cbc
 
-nodes:
-  IRL:  # Ireland
-    latitude: 53.16531310674002
-    longitude: -8.15532148937715
-    available_area: 42.4  # (1,000 km2) usable by onshore wind or open field pv
-    techs:
-      wind_offshore:
-        flow_cap_max: 301. # (1,000 MW)
-      pv_rooftop:
-        flow_cap_max: 35.9 # (1,000 MW)
-      pv_open_field:
-      wind_onshore:
-      pumped_hydro:
-        flow_cap_min: 0.292 # (1,000 MW)
-        storage_cap_min: 1.8 # (1,000 MWh)
-        flow_cap_max: 0.292 # (1,000 MW)
-        storage_cap_max: 1.8 # (1,000 MWh)
-      battery:
-      hydrogen:
-      heat_pump:
-      biofuel_boiler:
-      electricity_from_biofuel:
-      biofuel_supply:
-        source_use_max: 11.3 # (1,000 MWh)
-      demand_elec:
-      demand_heat:
-
-  GBR:  # United Kingdom
-    latitude: 54.04355639697917
-    longitude: -2.778706190546767
-    available_area: 145  # (1,000 km2) usable by onshore wind or open field pv
-    techs:
-      wind_offshore:
-        flow_cap_max: 2389. # (1,000 MW)
-      pv_rooftop:
-        flow_cap_max: 368. # (1,000 MW)
-      pv_open_field:
-      wind_onshore:
-      pumped_hydro:
-        flow_cap_min: 2.9 # (1,000 MW)
-        storage_cap_min: 26.7 # (1,000 MWh)
-        flow_cap_max: 2.9 # (1,000 MW)
-        storage_cap_max: 26.7 # (1,000 MWh)
-      battery:
-      hydrogen:
-      heat_pump:
-      biofuel_boiler:
-      electricity_from_biofuel:
-      biofuel_supply:
-        source_use_max: 1.62 # (1,000 MWh)
-      demand_elec:
-      demand_heat:
+templates:
+  ac_transmission:
+    name: "High voltage AC transmission line"
+    color: "#9E9E9E"
+    base_tech: transmission
+    carrier_in: electricity
+    carrier_out: electricity
+    flow_out_eff: 0.99995 # (1/km)
+    lifetime: 60
+    cost_flow_cap:
+      data: 0.94 # (1e+06 EUR2013/MW/km)
+      index: monetary
+      dims: costs
 
 parameters:
   cost_interest_rate:
@@ -69,7 +32,7 @@ parameters:
     dims: costs
 
 techs:
-  wind_offshore:  # from [@JRC:2014] Table 5
+  wind_offshore: # from [@JRC:2014] Table 5
     name: Offshore wind
     color: "#8E24AA"
     carrier_out: electricity
@@ -89,7 +52,7 @@ techs:
       index: monetary
       dims: costs
 
-  wind_onshore:  # from [@JRC:2014] Table 4
+  wind_onshore: # from [@JRC:2014] Table 4
     name: Onshore wind
     color: "#5E35B1"
     carrier_out: electricity
@@ -112,7 +75,7 @@ techs:
       index: monetary
       dims: costs
 
-  pv_rooftop:  # from [@JRC:2014] Table 9
+  pv_rooftop: # from [@JRC:2014] Table 9
     name: Roof mounted PV
     color: "#FBC02D"
     carrier_out: electricity
@@ -132,7 +95,7 @@ techs:
       index: monetary
       dims: costs
 
-  pv_open_field:  # from [@JRC:2014] Table 7
+  pv_open_field: # from [@JRC:2014] Table 7
     name: Open field PV
     color: "#FDD835"
     carrier_out: electricity
@@ -155,8 +118,8 @@ techs:
       index: monetary
       dims: costs
 
-  pumped_hydro:  # from [@schmidt:2019] Table S4
-    name: 'Pumped hydro power storage'
+  pumped_hydro: # from [@schmidt:2019] Table S4
+    name: "Pumped hydro power storage"
     color: "#03A9F4"
     base_tech: storage
     carrier_in: electricity
@@ -165,8 +128,8 @@ techs:
     flow_out_eff: 0.8832
     flow_in_eff: 0.8832
 
-  battery:  # from [@schmidt:2019] Table S4
-    name: 'Battery storage'
+  battery: # from [@schmidt:2019] Table S4
+    name: "Battery storage"
     color: "#F06292"
     base_tech: storage
     carrier_in: electricity
@@ -175,7 +138,7 @@ techs:
     flow_in_eff: 0.9273
     flow_out_eff: 0.9273
     flow_cap_per_storage_cap_min: 0.25 # ≤ 4h full-power discharge
-    storage_loss: 0  # No loss over time assumed
+    storage_loss: 0 # No loss over time assumed
     lifetime: 10
     cost_storage_cap:
       data: 0.10 # (1e+06 EUR2015/MWh), 802 $2015
@@ -194,7 +157,7 @@ techs:
       index: monetary
       dims: costs
 
-  hydrogen:  # from [@schmidt:2019] Table S4
+  hydrogen: # from [@schmidt:2019] Table S4
     name: Hydrogen power storage
     color: "#8D6E63"
     base_tech: storage
@@ -206,11 +169,11 @@ techs:
     flow_cap_per_storage_cap_max: 0.25 # ≥ 4h full-power discharge
     lifetime: 15
     cost_storage_cap:
-      data: 0.0092  # (1e+06 EUR2015/MWh), 31 $2015
+      data: 0.0092 # (1e+06 EUR2015/MWh), 31 $2015
       index: monetary
       dims: costs
     cost_flow_cap:
-      data: 1.61  # (1e+06 EUR2015/MW), 5417 $2015
+      data: 1.61 # (1e+06 EUR2015/MW), 5417 $2015
       index: monetary
       dims: costs
     cost_om_annual:
@@ -228,7 +191,7 @@ techs:
       index: monetary
       dims: costs
 
-  electricity_from_biofuel:  # from [@JRC:2014] Table 48 Anaerobic digestion
+  electricity_from_biofuel: # from [@JRC:2014] Table 48 Anaerobic digestion
     name: Electricity from anaerobically digested biofuel
     color: "#00897B"
     base_tech: conversion
@@ -259,15 +222,15 @@ techs:
     flow_out_eff: 0.8825
     lifetime: 20
     cost_flow_cap:
-      data: 0.45  # (1e+06 EUR2015/MW_heat)
+      data: 0.45 # (1e+06 EUR2015/MW_heat)
       index: [[monetary, heat]]
       dims: [costs, carriers]
     cost_om_annual:
-      data: 0.023  # (1e+06 EUR2015/MW_heat/year)
+      data: 0.023 # (1e+06 EUR2015/MW_heat/year)
       index: [[monetary, heat]]
       dims: [costs, carriers]
 
-  heat_pump:   # [@DEA:2017] - 7.3 - 7.6 Air to water & 7.7 - 7.10 Ground source - 2050
+  heat_pump: # [@DEA:2017] - 7.3 - 7.6 Air to water & 7.7 - 7.10 Ground source - 2050
     name: Heat pump
     color: "#FF8A65"
     base_tech: conversion
@@ -277,11 +240,11 @@ techs:
 
     # Costs are an average of data for existing single-family, new single-family, existing multi-family, and new multi-family homes | weighted average between air- and ground-source heat pumps according to an assumed relative share of installed capacity.
     cost_flow_cap:
-      data: 0.71  # (1e+06 EUR2015/MW_heat)
+      data: 0.71 # (1e+06 EUR2015/MW_heat)
       index: [[monetary, heat]]
       dims: [costs, carriers]
     cost_om_annual:
-      data: 0.021  # (1e+06 EUR2015/MW_heat/year)
+      data: 0.021 # (1e+06 EUR2015/MW_heat/year)
       index: [[monetary, heat]]
       dims: [costs, carriers]
 
@@ -301,25 +264,64 @@ techs:
     template: ac_transmission
     from: IRL
     to: GBR
-    flow_cap_min: 1.75  # (1,000 MW)
+    flow_cap_min: 1.75 # (1,000 MW)
 
-templates:
-  ac_transmission:
-    name: "High voltage AC transmission line"
-    color: "#9E9E9E"
-    base_tech: transmission
-    carrier_in: electricity
-    carrier_out: electricity
-    flow_out_eff: 0.99995 # (1/km)
-    lifetime: 60
-    cost_flow_cap:
-      data: 0.94 # (1e+06 EUR2013/MW/km)
-      index: monetary
-      dims: costs
+nodes:
+  IRL: # Ireland
+    latitude: 53.16531310674002
+    longitude: -8.15532148937715
+    available_area: 42.4 # (1,000 km2) usable by onshore wind or open field pv
+    techs:
+      wind_offshore:
+        flow_cap_max: 301. # (1,000 MW)
+      pv_rooftop:
+        flow_cap_max: 35.9 # (1,000 MW)
+      pv_open_field:
+      wind_onshore:
+      pumped_hydro:
+        flow_cap_min: 0.292 # (1,000 MW)
+        storage_cap_min: 1.8 # (1,000 MWh)
+        flow_cap_max: 0.292 # (1,000 MW)
+        storage_cap_max: 1.8 # (1,000 MWh)
+      battery:
+      hydrogen:
+      heat_pump:
+      biofuel_boiler:
+      electricity_from_biofuel:
+      biofuel_supply:
+        source_use_max: 11.3 # (1,000 MWh)
+      demand_elec:
+      demand_heat:
 
-data_sources:
+  GBR: # United Kingdom
+    latitude: 54.04355639697917
+    longitude: -2.778706190546767
+    available_area: 145 # (1,000 km2) usable by onshore wind or open field pv
+    techs:
+      wind_offshore:
+        flow_cap_max: 2389. # (1,000 MW)
+      pv_rooftop:
+        flow_cap_max: 368. # (1,000 MW)
+      pv_open_field:
+      wind_onshore:
+      pumped_hydro:
+        flow_cap_min: 2.9 # (1,000 MW)
+        storage_cap_min: 26.7 # (1,000 MWh)
+        flow_cap_max: 2.9 # (1,000 MW)
+        storage_cap_max: 26.7 # (1,000 MWh)
+      battery:
+      hydrogen:
+      heat_pump:
+      biofuel_boiler:
+      electricity_from_biofuel:
+      biofuel_supply:
+        source_use_max: 1.62 # (1,000 MWh)
+      demand_elec:
+      demand_heat:
+
+data_tables:
   capacityfactors_wind_offshore:
-    source: timeseries/supply/capacityfactors-wind-offshore.csv
+    data: timeseries/supply/capacityfactors-wind-offshore.csv
     rows: timesteps
     columns: nodes
     add_dims:
@@ -327,7 +329,7 @@ data_sources:
       parameters: source_use_max
 
   capacityfactors_wind_onshore:
-    source: timeseries/supply/capacityfactors-wind-onshore.csv
+    data: timeseries/supply/capacityfactors-wind-onshore.csv
     rows: timesteps
     columns: nodes
     add_dims:
@@ -335,7 +337,7 @@ data_sources:
       parameters: source_use_max
 
   capacityfactors_rooftop_pv:
-    source: timeseries/supply/capacityfactors-rooftop-pv.csv
+    data: timeseries/supply/capacityfactors-rooftop-pv.csv
     rows: timesteps
     columns: nodes
     add_dims:
@@ -343,7 +345,7 @@ data_sources:
       parameters: source_use_max
 
   capacityfactors_pv_open_field:
-    source: timeseries/supply/capacityfactors-open-field-pv.csv
+    data: timeseries/supply/capacityfactors-open-field-pv.csv
     rows: timesteps
     columns: nodes
     add_dims:
@@ -351,7 +353,7 @@ data_sources:
       parameters: source_use_max
 
   heat_pump_cop:
-    source: timeseries/conversion/heat-pump-cop.csv
+    data: timeseries/conversion/heat-pump-cop.csv
     rows: timesteps
     columns: nodes
     add_dims:
@@ -359,7 +361,7 @@ data_sources:
       parameters: flow_out_eff
 
   demand_electricity:
-    source: timeseries/demand/electricity.csv
+    data: timeseries/demand/electricity.csv
     rows: timesteps
     columns: nodes
     add_dims:
@@ -367,7 +369,7 @@ data_sources:
       parameters: sink_use_equals
 
   demand_heat:
-    source: timeseries/demand/heat.csv
+    data: timeseries/demand/heat.csv
     rows: timesteps
     columns: nodes
     add_dims:

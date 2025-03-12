@@ -11,18 +11,18 @@ overrides:
         carrier_out: electricity
         base_tech: supply
         flow_out_eff: 0.4
-        lifetime: 50  # average of 40 [Wealer:2019] and 60 [IEA:2020]
-        flow_out_min_relative: 0.8  # average of 0.75 [Wealer:2019] and 0.85 [IEA:2020]
+        lifetime: 50 # average of 40 [Wealer:2019] and 60 [IEA:2020]
+        flow_out_min_relative: 0.8 # average of 0.75 [Wealer:2019] and 0.85 [IEA:2020]
         cost_flow_cap:
-          data: 3.67  # (1e+06 EUR2015/MW)
+          data: 3.67 # (1e+06 EUR2015/MW)
           index: monetary
           dims: costs
         cost_om_annual:
-          data: 0.076  # (1e+06 EUR2015/MW/year)
+          data: 0.076 # (1e+06 EUR2015/MW/year)
           index: monetary
           dims: costs
         cost_flow_out:
-          data:  10.e-06  # (1e+06 EUR2015/MWh) | ASSUME: fuel costs given by [IEA:2020,Barkatullah:2017] are per MWh electricity produced, not MWh available energy in the input fuel.
+          data: 10.e-06 # (1e+06 EUR2015/MWh) | ASSUME: fuel costs given by [IEA:2020,Barkatullah:2017] are per MWh electricity produced, not MWh available energy in the input fuel.
           index: monetary
           dims: costs
 
@@ -30,3 +30,6 @@ overrides:
       GBR.techs.nuclear:
         flow_cap_min: 12.638 # (1,000 MW)
         flow_cap_max: 12.638 # (1,000 MW)
+
+  use_gurobi:
+    config.build.backend: gurobi

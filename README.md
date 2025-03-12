@@ -74,6 +74,7 @@ Finally, you can create the isolated Python working environment for this masterc
 
 1. In your `<output-directory>\ET-masterclass-2024` VSCode session, open a new terminal.
 1. Run the following two commands to create your working environment and then to _activate_ it:
+
     ```bash
     conda env create -f environment.yaml
     conda activate et-masterclass
